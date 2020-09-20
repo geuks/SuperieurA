@@ -70,7 +70,6 @@ public class GameManagerEditor : Editor
 
     private void OnDisable()
     {
-        // Make sure we don't get memory leaks etc.
         reorderableList.drawHeaderCallback -= DrawHeader;
         reorderableList.drawElementCallback -= DrawElement;
 
@@ -80,23 +79,11 @@ public class GameManagerEditor : Editor
         reorderableList.drawElementBackgroundCallback -= DrawElementCallback;
     }
 
-    /// <summary>
-    /// Draws the header of the list
-    /// </summary>
-    /// <param name="rect"></param>
     private void DrawHeader(Rect rect)
     {
         GUI.Label(rect, "List A");
     }
 
-
-    /// <summary>
-    /// Draws background of one element of the list
-    /// </summary>
-    /// <param name="rect"></param>
-    /// <param name="index"></param>
-    /// <param name="active"></param>
-    /// <param name="focused"></param>
     protected void DrawElementCallback(Rect rect, int index, bool active, bool focused)
     {
         rect.height = 18;
@@ -107,13 +94,6 @@ public class GameManagerEditor : Editor
             GUI.DrawTexture(rect, tex as Texture);
     }
 
-    /// <summary>
-    /// Draws one element of the list
-    /// </summary>
-    /// <param name="rect"></param>
-    /// <param name="index"></param>
-    /// <param name="active"></param>
-    /// <param name="focused"></param>
     protected void DrawElement(Rect rect, int index, bool active, bool focused)
     {
         gm.operations[index].isHide = !active;
